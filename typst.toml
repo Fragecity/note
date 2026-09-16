@@ -1,0 +1,10 @@
+[package]
+name = "note"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["meg"]
+description = "Personal notes with Chinese fonts, navy headings, page numbers, and a first-page logo."
+
+[template]
+path = "template"
+entrypoint = "main.typ"
