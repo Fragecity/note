@@ -8,11 +8,13 @@
 
 ```typ
 #import "@local/note:0.1.0": template
-#show: template
+#show: template.with(title: [笔记标题])
 
-= 标题
+= 一级标题
 中文正文。English text.
 ```
+
+`title` 可使用字符串或内容块，设置首页标题和 PDF 文档标题。不需要标题时，仍可使用 `#show: template`。
 
 需要字体 `Noto Sans` 和 `Noto Sans CJK SC`。首次编译需要下载 `quick-maths:0.2.1` 和 `wrap-it:0.1.1`。
 
