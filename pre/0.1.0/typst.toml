@@ -1,13 +1,12 @@
 [package]
-name = "template"
+name = "pre"
 version = "0.1.0"
 entrypoint = "lib.typ"
 authors = ["Bian Kaiming"]
-description = "Personal Typst note and presentation templates."
+description = "Personal presentations with overview, section slides and progress bars."
 compiler = "0.14.0"
 repository = "https://github.com/Fragecity/note"
-exclude = ["build", ".git"]
 
 [template]
-path = "templates/pre"
+path = "template"
 entrypoint = "main.typ"

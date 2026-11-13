@@ -5,7 +5,7 @@
   place(top + left, image("assets/shlab-logo.png", width: 26.4mm, height: 15.3216mm)),
 )
 
-#let note(title: none, body) = {
+#let template(title: none, body) = {
   set document(title: title) if title != none
   set text(font: ("Noto Sans", "Noto Sans CJK SC"))
   set math.equation(numbering: "(1)")
@@ -35,3 +35,6 @@
   }
   body
 }
+
+// Both names refer to the note show rule.
+#let note = template

@@ -1,0 +1,12 @@
+[package]
+name = "note"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Bian Kaiming"]
+description = "Personal Chinese notes with title, first-page logo and page numbers."
+compiler = "0.14.0"
+repository = "https://github.com/Fragecity/note"
+
+[template]
+path = "template"
+entrypoint = "main.typ"

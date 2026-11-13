@@ -1,12 +1,15 @@
-.PHONY: all check note pre
+.PHONY: all install check note pre
 
 all: note pre
 check: all
 
-note:
-	mkdir -p build
-	typst compile --root . templates/note/main.typ build/note.pdf
+install:
+	python3 scripts/install.py
 
-pre:
+note: install
 	mkdir -p build
-	typst compile --root . templates/pre/main.typ build/pre.pdf
+	typst compile --root note/0.1.0 note/0.1.0/template/main.typ build/note.pdf
+
+pre: install
+	mkdir -p build
+	typst compile --root pre/0.1.0 pre/0.1.0/template/main.typ build/pre.pdf

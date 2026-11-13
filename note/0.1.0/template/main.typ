@@ -1,4 +1,4 @@
-#import "@local/template:0.1.0": note
+#import "@local/note:0.1.0": note
 #show: note.with(title: [笔记标题])
 
 = 一级标题

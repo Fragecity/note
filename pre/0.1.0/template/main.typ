@@ -1,4 +1,4 @@
-#import "@local/template:0.1.0": pre, title-slide, overview-slide
+#import "@local/pre:0.1.0": pre, title-slide, overview-slide
 #show: pre.with(title: [演示标题])
 
 #title-slide()
