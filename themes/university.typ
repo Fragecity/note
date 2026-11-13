@@ -406,7 +406,7 @@
     box(utils.display-current-heading(level: 1)) + h(.3em) + self.info.logo
   ),
   footer-columns: (42%, 42%, 1fr),
-  footer-a: utils.display-current-heading(level: 1), 
+  footer-a: utils.display-current-heading(level: 1),
   footer-b: utils.display-current-heading(level: 2),
   footer-c: self => if self.info.short-title == auto {
     self.info.title
