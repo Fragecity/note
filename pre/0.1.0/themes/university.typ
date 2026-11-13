@@ -219,6 +219,32 @@
 })
 
 
+// List only the immediate child headings of the current section.
+// Stop at the next heading of the same or a higher level.
+#let section-contents(level: 1) = context {
+  let section = utils.current-heading(level: level)
+  if section != none {
+    let collecting = false
+    let children = ()
+    for entry in query(heading) {
+      if entry.location() == section.location() {
+        collecting = true
+      } else if collecting {
+        if entry.level <= level { break }
+        if entry.level == level + 1 and entry.outlined {
+          children.push(link(entry.location(), entry.body))
+        }
+      }
+    }
+    if children.len() > 0 {
+      set text(size: 22pt, weight: "regular")
+      std.align(left, block(width: 100%)[
+        #stack(dir: ttb, spacing: .55em, ..children)
+      ])
+    }
+  }
+}
+
 /// New section slide for the presentation.
 /// You can update it by updating the `new-section-slide-fn` argument for `config-common` function.
 ///
@@ -265,6 +291,7 @@
           self.colors.primary-light,
         ),
       ),
+      section-contents(level: level),
     )
     body
   }
@@ -401,7 +428,9 @@
   aspect-ratio: "16-9",
   align: top,
   progress-bar: true,
-  header: utils.display-current-heading(level: 2, style: auto),
+  // Render the heading body; reinserting a located heading here can move its
+  // query location into the header and make page titles oscillate during layout.
+  header: utils.display-current-heading(level: 2),
   header-right: self => (
     box(utils.display-current-heading(level: 1)) + h(.3em) + self.info.logo
   ),

@@ -94,10 +94,10 @@ typst compile my-note/main.typ my-note/main.pdf
 `pre` 的默认主讲人、导师为 Bian Kaiming、Furong；`slides` 是 `pre` 的别名。`advisor: none` 隐藏导师；`subtitle`、`date`、`institution` 可设置或留为 `none`，左右 Logo 可通过 `logo-left`、`logo-right` 替换或关闭。
 
 - 默认 16:9，包含封面、自动 Overview、一级章节页和二级正文页。
-- `= intro` 是一级 section；`== Motivation` 等为二级 section。目录保留层级并支持点击跳转。
-- 一级章节页继承 university 设计：进度条位于标题下方，线宽 8pt，隐藏页眉和页脚。
+- `= intro` 是一级 section；`== Motivation` 等为二级 section。Overview 默认仅显示一级标题，支持点击跳转。
+- 一级章节页继承 university 设计：进度条位于标题下方，线宽 8pt，隐藏页眉和页脚。进度条下方自动列出当前章节的二级标题，与进度条左侧对齐，点击可跳转；不包含其他章节的标题。
 - 正文进度条贴底、左侧顶格，高度 9.8pt；右侧为独立的 50pt 页码区域，页码上移 3pt，左下角无导航文字。
-- `overview-slide(depth: 1)` 可仅显示一级章节。
+- 需要完整两级目录时，可显式使用 `overview-slide(depth: 2)`。
 - `slide`、`title-slide`、`new-section-slide`、`focus-slide`、`matrix-slide` 可从包入口导入。
 
 ```sh

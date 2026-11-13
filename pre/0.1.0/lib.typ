@@ -14,7 +14,7 @@
   ],
   aspect-ratio: "16-9",
   progress-bar: true,
-  outline-depth: 2,
+  outline-depth: 1,
   body,
 ) = {
   show: university-theme.with(
@@ -46,7 +46,7 @@
 
 #let slides = pre
 
-#let overview-slide(title: [Overview], depth: 2) = {
+#let overview-slide(title: [Overview], depth: 1) = {
   heading(depth: 2, outlined: false, title)
   outline(title: none, depth: depth)
 }
