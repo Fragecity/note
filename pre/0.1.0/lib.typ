@@ -4,14 +4,13 @@
 #let pre(
   title: [演示标题],
   subtitle: none,
+  kicker: none,
   author: [Bian Kaiming],
-  advisor: [Furong],
+  advisor: [Fu Rong],
   date: none,
   institution: none,
-  logo-left: image("assets/SUSTech LOGO CN.svg", height: 2cm),
-  logo-right: box(width: 8.5cm, height: 2cm)[
-    #align(right + horizon, image("assets/shanghai-ai-lab.webp", width: 120%))
-  ],
+  logo-left: image("assets/SUSTech LOGO CN.svg", height: 1.55cm),
+  logo-right: image("assets/shanghai-ai-lab.webp", height: 1.25cm),
   aspect-ratio: "16-9",
   progress-bar: true,
   outline-depth: 1,
@@ -21,14 +20,16 @@
     aspect-ratio: aspect-ratio,
     progress-bar: progress-bar,
     config-info(
-      title: [#text(size: 45pt, title)],
+      title: title,
       subtitle: subtitle,
+      kicker: kicker,
       author: [
-        #author
+        #text(weight: "semibold", fill: c-ink, author)
         #if advisor != none {
-          linebreak()
-          v(0.5em)
-          [导师：#advisor]
+          h(14pt)
+          text(fill: c-dim)[|]
+          h(14pt)
+          text(fill: c-muted)[导师：#advisor]
         }
       ],
       date: date,
@@ -38,15 +39,45 @@
     ),
     header-right: self => none,
   )
-  show footnote.entry: set text(size: 12pt)
+  show footnote.entry: set text(size: 11.5pt)
   set outline(depth: outline-depth)
-  set text(font: ("Libertinus Serif", "Noto Sans CJK SC"))
   body
 }
 
 #let slides = pre
 
+// Clean minimal overview slide (no background card fill, title-only items).
 #let overview-slide(title: [Overview], depth: 1) = {
   heading(depth: 2, outlined: false, title)
-  outline(title: none, depth: depth)
+  v(1fr)
+  context {
+    let sections = query(heading.where(level: 1))
+    let cols = if sections.len() <= 3 { (1fr,) } else { (1fr, 1fr) }
+    grid(
+      columns: cols,
+      column-gutter: 42pt,
+      row-gutter: 32pt,
+      ..sections.enumerate().map(((i, sec)) => {
+        link(sec.location(), block(
+          width: 100%,
+          fill: none,
+          stroke: none,
+          inset: (x: 4pt, y: 6pt),
+          grid(
+            columns: (42pt, 1fr),
+            column-gutter: 12pt,
+            align: (left + horizon, left + horizon),
+            text(
+              size: 24pt,
+              weight: "bold",
+              fill: c-teal.desaturate(20%).transparentize(32%),
+              pad-two(i + 1),
+            ),
+            text(size: 19pt, weight: "bold", fill: c-ink, sec.body),
+          ),
+        ))
+      })
+    )
+  }
+  v(1.2fr)
 }
